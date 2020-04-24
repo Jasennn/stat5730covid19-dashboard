@@ -22,7 +22,7 @@ get_state_deaths_map_data <- function(selected_state) {
 
   # Get deaths from NYT
   state_deaths <- nyt_county %>%
-    filter(state == selected_state, date == max_date) %>%
+    filter(state == selected_state, date == max_county_date) %>%
     select(fips, state, county, deaths)
   
   # Get population estimates of Census
