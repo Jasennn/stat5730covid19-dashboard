@@ -8,9 +8,9 @@ library(RcppRoll)
 states <- nyt_county %>% count(state) %>% pull(state)
 max_county_date <- max(nyt_county$date)
 
-# This function takes a state as input and returns a data frame containing 
-# the boundaries of counties,and the COVID-19 deaths for each county, and 
-# a U.S. Census population estimate
+#-------------------------------------------------------------------------------
+# Data for ounty-level deaths choropleth
+#-------------------------------------------------------------------------------
 get_state_deaths_map_data <- function(selected_state) {
   # Get state county boundaries. Annoyingly, maps uses lower case state
   state_map <- map_data("county", region = tolower(selected_state)) %>%
@@ -37,6 +37,9 @@ get_state_deaths_map_data <- function(selected_state) {
     mutate(deaths = replace_na(deaths, 0))
 }
 
+#-------------------------------------------------------------------------------
+# County-level deaths choropleth
+#-------------------------------------------------------------------------------
 plot_deaths_map <- function(df, per_capita = TRUE) {
   if (per_capita) {
     df <- mutate(df, deaths = 1e6 * deaths / POP)
@@ -54,8 +57,9 @@ plot_deaths_map <- function(df, per_capita = TRUE) {
     labs(title = paste("Cumulative deaths, current as of", max_county_date))
 }
 
-# This function takes a state as input and returns a data frame containing 
-# dates and total deaths in the state from COVID Tracking Project and population
+#-------------------------------------------------------------------------------
+# Data for increase in death line chart
+#-------------------------------------------------------------------------------
 get_state_death_increase_line_data <- function(selected_state) {
   # Get deaths from COVID Tracking Project
   state_deaths <- covidtracking %>%
@@ -73,6 +77,9 @@ get_state_death_increase_line_data <- function(selected_state) {
     left_join(state_pop, by = "fips")
 }
 
+#-------------------------------------------------------------------------------
+# Increase in death line chart
+#-------------------------------------------------------------------------------
 plot_death_increase_line <- function(df, per_capita = TRUE, log_scale = TRUE, comparison = TRUE) {
   if (per_capita) {
     df <- mutate(df, death_increase = 1e6 * death_increase / POP)
@@ -127,7 +134,9 @@ plot_death_increase_line <- function(df, per_capita = TRUE, log_scale = TRUE, co
   p
 }
 
-# This function constructs the state executive orders table
+#-------------------------------------------------------------------------------
+# State executive orders table
+#-------------------------------------------------------------------------------
 table_state_orders <- function(selected_state) {
   state_orders %>%
     filter(state == selected_state) %>%
@@ -139,6 +148,9 @@ table_state_orders <- function(selected_state) {
     drop_na()
 }
 
+#-------------------------------------------------------------------------------
+# ui
+#-------------------------------------------------------------------------------
 ui <- fluidPage(
   titlePanel(str_glue("STAT5730: COVID-19 deaths")),
   sidebarLayout(
@@ -167,6 +179,9 @@ ui <- fluidPage(
   )
 )
 
+#-------------------------------------------------------------------------------
+# server
+#-------------------------------------------------------------------------------
 server <- function(input, output, session) {
   # Reactive for producing map data for selected state
   state_deaths_map_data <- reactive({
