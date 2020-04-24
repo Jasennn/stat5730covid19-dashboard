@@ -44,7 +44,7 @@ click on the down arrow next to "New Project" and select "New Project from
 Git Repo". Then copy-and-paste the URL of this web page. This makes it much 
 easier to share with your group.
 
-Once you have the [app.R] open in RStudio (or [rstudio.cloud]) and all 
+Once you have the `app.R` open in RStudio (or rstudio.cloud) and all 
 the required packages installed, you can click on the "Run App" button 
 to run a local instance of the app.
 
