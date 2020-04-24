@@ -1,0 +1,26 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# stat5730covid19-dashboard
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This is an example COVID-19 dashboard for STAT 5730 based on R Shiny. It requires the following 
+R packages:
+
+- shiny
+- maps
+- tidyverse
+- RcppRoll
+- [stat5730covid19](github.com/vqv/stat5730covid19)
