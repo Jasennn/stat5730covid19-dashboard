@@ -17,9 +17,28 @@ requires the following R packages:
   - [stat5730covid19](https://github.com/vqv/stat5730covid19) – Make
     sure you use `remotes::install_github()` to install this package.
 
+You can install of these packages with the following commands:
+
+``` r
+install.packages(c("shiny", "maps", "tidyverse", "RcppRoll", "devtools"))
+devtools::install_github("vqv/stat5730covid19")
+```
+
 There is just a single source file: [`app.R`](app.R). You can view a
 live version of the app at
 [vincev.shinyapps.io/stat5730covid19-dashboard/](https://vincev.shinyapps.io/stat5730covid19-dashboard/)
+
+You can clone this repository to your desktop, or even better, you can
+login to [rstudio.cloud](https://rstudio.cloud) with your
+**shinyapps.io** login credentials—they are shared between the two
+services—and create a new project directly from this Github repository.
+In \[rstudio.cloud\], click on the down arrow next to “New Project” and
+select “New Project from Git Repo”. Then copy-and-paste the URL of this
+web page. This makes it much easier to share with your group.
+
+Once you have the \[app.R\] open in RStudio (or \[rstudio.cloud\]) and
+all the required packages installed, you can click on the “Run App”
+button to run a local instance of the app.
 
 # Overview of design
 
