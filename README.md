@@ -14,4 +14,4 @@ requires the following R packages:
   - maps
   - tidyverse
   - RcppRoll
-  - [stat5730covid19](github.com/vqv/stat5730covid19)
+  - [stat5730covid19](https://github.com/vqv/stat5730covid19)
